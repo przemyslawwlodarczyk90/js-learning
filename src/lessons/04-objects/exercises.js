@@ -18,13 +18,13 @@
 // wypisz samo firstName
 // wypisz samo city
 
-const user = [
-    firstName = "Przemek",
-    lastName = "Wlodarczyk",
-    age = 36,
-    city = 'Otwock',
-    profession = 'Developer',
-]
+const user = {
+    firstName:"Przemek",
+    lastName: "Wlodarczyk",
+    age: 36,
+    city: 'Otwock',
+    profession: 'Developer',
+}
 
 console.log(user);
 
@@ -38,7 +38,7 @@ console.log(user.city);
 
 user.age = 37;
 
-console.log = user.age;
+console.log(user.age);
 // TODO:
 // zwiększ wiek o 1
 // wypisz nową wartość
@@ -103,8 +103,8 @@ for (let i = 0; let<cars.length; i++){
 // Wypisz tylko drogie auta
 
 for (let i = 0; let<cars.length; i++){
-    if(cars[i].price>5000);
-    console.log(cars[i]);
+    if(cars[i].price>5000){
+    console.log(cars[i])};
 }
 
 
