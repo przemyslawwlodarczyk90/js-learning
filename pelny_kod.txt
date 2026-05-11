@@ -1,0 +1,1433 @@
+--- FILE: ./eslint.config.js ---
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+])
+
+
+--- FILE: ./src/App.jsx ---
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import './App.css'
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <section id="center">
+        <div className="hero">
+          <img src={heroImg} className="base" width="170" height="179" alt="" />
+          <img src={reactLogo} className="framework" alt="React logo" />
+          <img src={viteLogo} className="vite" alt="Vite logo" />
+        </div>
+        <div>
+          <h1>Get started</h1>
+          <p>
+            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+          </p>
+        </div>
+        <button
+          className="counter"
+          onClick={() => setCount((count) => count + 1)}
+        >
+          Count is {count}
+        </button>
+      </section>
+
+      <div className="ticks"></div>
+
+      <section id="next-steps">
+        <div id="docs">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#documentation-icon"></use>
+          </svg>
+          <h2>Documentation</h2>
+          <p>Your questions, answered</p>
+          <ul>
+            <li>
+              <a href="https://vite.dev/" target="_blank">
+                <img className="logo" src={viteLogo} alt="" />
+                Explore Vite
+              </a>
+            </li>
+            <li>
+              <a href="https://react.dev/" target="_blank">
+                <img className="button-icon" src={reactLogo} alt="" />
+                Learn more
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="social">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#social-icon"></use>
+          </svg>
+          <h2>Connect with us</h2>
+          <p>Join the Vite community</p>
+          <ul>
+            <li>
+              <a href="https://github.com/vitejs/vite" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#github-icon"></use>
+                </svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://chat.vite.dev/" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#discord-icon"></use>
+                </svg>
+                Discord
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/vite_js" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#x-icon"></use>
+                </svg>
+                X.com
+              </a>
+            </li>
+            <li>
+              <a href="https://bsky.app/profile/vite.dev" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#bluesky-icon"></use>
+                </svg>
+                Bluesky
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="ticks"></div>
+      <section id="spacer"></section>
+    </>
+  )
+}
+
+export default App
+
+
+--- FILE: ./src/lessons/01-variables-and-types/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 1
+// ==========================================
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Uzupełnij dane o sobie
+
+// const firstName = "";
+// const lastName = "";
+// let age = 0;
+// const city = "";
+// const isLearningJavaScript = true;
+
+// TODO: wypisz każde osobno
+const firstName = "Przemek";
+const lastName = "Wlodarczyk";
+
+let age = 36;
+const city = "Lukow";
+
+const isLearningJavaScript = true; 
+
+console.log(`Nazywam się ${firstName} ${lastName}, mam ${age} lat, mieszkam w ${city}`);
+
+
+
+// TODO: wypisz jedno zdanie
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Auto
+
+const brand = "Toyota";
+const model = "Świetna";
+const year = 1990;
+let price = 2000;
+const color = "red";
+
+console.log(`Mam super ${brand} model ${model}, dobra cena ${price}`);
+
+price = price + 100;
+
+console.log(`Mam super ${brand} model ${model}, dobra cena  tylko troche podrożało${price}`);
+
+
+// TODO: wypisz zdanie o aucie
+// TODO: zmień cenę
+// TODO: wypisz jeszcze raz
+
+
+// ---------- ĆWICZENIE 3 ----------
+// Typy danych
+
+const exampleString = "String";
+const exampleNumber = 12;
+const exampleBoolean = false;
+const exampleNull = null;
+let exampleUndefined;
+
+console.log(exampleString);
+console.log(exampleNumber);
+console.log(exampleBoolean);
+console.log(exampleNull);
+console.log(exampleUndefined);
+
+console.log("Typeof string", typeof exampleString);
+console.log("Typeof number", typeof exampleNumber);
+console.log("Typeof boolean", typeof exampleBoolean);
+console.log("Typeof null", typeof exampleNull);
+console.log("Typeof undefined", typeof exampleUndefined);
+// TODO: wypisz wszystko
+
+
+// ---------- ĆWICZENIE 4 ----------
+// typeof
+
+// TODO: sprawdź typ każdej zmiennej przez typeof
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Błąd const
+
+// const country = "Polska";
+// country = "Niemcy"; // odkomentuj i zobacz błąd
+
+
+// ---------- ĆWICZENIE 6 ----------
+// let vs const
+
+let score = 10;
+
+score = 20;
+
+console.log(score);
+
+// TODO: zmień score na 20
+// TODO: wypisz wynik
+
+
+// ---------- ĆWICZENIE 7 ----------
+// Produkt
+
+const productName = "";
+const productPrice = 0;
+const isAvailable = false;
+
+// TODO: wypisz zdanie:
+// "Produkt X kosztuje Y zł. Dostępność: Z"
+
+console.log(`Produkt ${productName} kosztuje ${productPrice} jego dostępność to ${isAvailable}`);
+
+
+// ---------- BONUS ----------
+// 3 własne przykłady
+
+--- FILE: ./src/lessons/01-variables-and-types/theory.js ---
+// ==========================================
+// LEKCJA 1 — ZMIENNE I TYPY DANYCH
+// ==========================================
+
+// ---------- ZMIENNE ----------
+
+// const = nie zmieniasz wartości
+const name = "Przemek";
+
+// let = możesz zmieniać
+let age = 35;
+age = 36;
+
+console.log("const name:", name);
+console.log("let age:", age);
+
+// var = stare, nie używamy na start
+
+
+// ---------- TYPY DANYCH ----------
+
+// string
+const city = "Łuków";
+
+// number
+const price = 99.99;
+
+// boolean
+const isLearning = true;
+
+// null
+const selectedCar = null;
+
+// undefined
+let result;
+
+console.log("city:", city);
+console.log("price:", price);
+console.log("isLearning:", isLearning);
+console.log("selectedCar:", selectedCar);
+console.log("result:", result);
+
+
+// ---------- typeof ----------
+
+console.log("typeof city:", typeof city); // string
+console.log("typeof price:", typeof price); // number
+console.log("typeof isLearning:", typeof isLearning); // boolean
+console.log("typeof selectedCar:", typeof selectedCar); // object (JS bug)
+console.log("typeof result:", typeof result); // undefined
+
+
+// ---------- TEMPLATE LITERALS ----------
+
+const firstName = "Przemek";
+const lastName = "Włodarczyk";
+const userAge = 35;
+
+console.log(`Nazywam się ${firstName} ${lastName} i mam ${userAge} lat.`);
+
+
+// ---------- WAŻNE ----------
+// const → default
+// let → tylko jak zmieniasz
+// var → ignoruj na start
+
+--- FILE: ./src/lessons/02-operators-and-conditions/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 2
+// ==========================================
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Sprawdź czy liczba jest parzysta
+
+let number = 10;
+
+if(number % 2 ==0){
+    console.log("Liczba jest parzysta");
+}
+
+// TODO:
+// jeśli parzysta → "parzysta"
+// jeśli nie → "nieparzysta"
+
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Kalkulator rabatu
+
+let price = 1000;
+let isClient = true;
+
+// TODO:
+// jeśli klient i cena > 500 → 10% rabatu
+// wypisz końcową cenę
+
+if (isClient && price>500){
+    price=price * 0,9;;
+}
+
+
+// ---------- ĆWICZENIE 3 ----------
+// Sprawdź wiek
+
+let age2 = 17;
+
+// TODO:
+// <18 → "dziecko"
+// 18-65 → "dorosły"
+// >65 → "senior"
+
+if(age2<18){
+    console.log("Dziecko");
+} else if(age2>=18 && age2<=65){
+    console.log("Dorosły");
+} else {
+        console.log("Senior");
+    }
+
+
+
+
+// ---------- ĆWICZENIE 4 ----------
+// Sprawdź login
+
+let isLoggedIn = true;
+let isAdmin = false;
+
+// TODO:
+// jeśli zalogowany i admin → "panel admina"
+// jeśli zalogowany → "panel usera"
+// jeśli nie → "zaloguj się"
+
+if(isLoggedIn == true && isAdmin == true){
+    console.log("Panel admina");
+
+    }else if (isLoggedIn == true && isAdmin == false){
+    console.log("Panel usera");
+    }else {
+        console.log("Zaloguj się");
+    }
+
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Porównania
+
+let a = 5;
+let b = "5";
+
+// TODO:
+// sprawdź:
+// a == b
+// a === b
+// a !== b
+
+console.log(a == b);
+console.log(a === b);
+console.log(a !== b);
+
+
+// ---------- ĆWICZENIE 6 ----------
+// Największa liczba z 3
+
+let x = 10;
+let y = 25;
+let z = 15;
+
+if(x>y){
+    console.log("X największe")
+} else if (y>(z || x)){
+    console.log("y jest największe")
+} else if (z>(y || x)){
+    console.log("z największe")
+} else if (x>(y||z)){
+    console.log("x największe")
+};
+
+// TODO:
+// znajdź największą i wypisz
+
+
+
+// ---------- ĆWICZENIE 7 ----------
+// Ternary
+
+let isOnline = false;
+
+let status = isOnline >= true ? "ONLINE" : "OFFLINEE";
+
+// TODO:
+// ustaw zmienną status:
+// "online" albo "offline"
+// użyj ternary
+
+
+
+// ---------- BONUS ----------
+// Wymyśl własny warunek:
+// np. czy auto jest opłacalne:
+// cena < 50000 i rok > 2015
+
+--- FILE: ./src/lessons/02-operators-and-conditions/theory.js ---
+// ==========================================
+// LEKCJA 2 — OPERATORY I WARUNKI
+// ==========================================
+
+// ---------- OPERATORY MATEMATYCZNE ----------
+
+let a = 10;
+let b = 3;
+
+console.log("dodawanie:", a + b);
+console.log("odejmowanie:", a - b);
+console.log("mnożenie:", a * b);
+console.log("dzielenie:", a / b);
+console.log("modulo (reszta):", a % b);
+
+
+// ---------- OPERATORY PORÓWNANIA ----------
+
+console.log(5 == "5");   // true (luźne porównanie - NIE używaj)
+console.log(5 === "5");  // false (ścisłe porównanie - używaj)
+
+console.log(10 > 5);
+console.log(10 < 5);
+console.log(10 >= 10);
+console.log(10 <= 9);
+console.log(10 !== 5);
+
+
+// ---------- OPERATORY LOGICZNE ----------
+
+let isLoggedIn = true;
+let isAdmin = false;
+
+console.log("AND:", isLoggedIn && isAdmin); // oba muszą być true
+console.log("OR:", isLoggedIn || isAdmin);  // jedno musi być true
+console.log("NOT:", !isLoggedIn);           // odwraca
+
+
+// ---------- IF / ELSE ----------
+
+let age = 20;
+
+if (age >= 18) {
+    console.log("Pełnoletni");
+} else {
+    console.log("Niepełnoletni");
+}
+
+
+// ---------- ELSE IF ----------
+
+let score = 75;
+
+if (score < 50) {
+    console.log("Niedostateczny");
+} else if (score < 70) {
+    console.log("Dopuszczający");
+} else if (score < 90) {
+    console.log("Dobry");
+} else {
+    console.log("Bardzo dobry");
+}
+
+
+// ---------- TERNARY (skrócony if) ----------
+
+let isAdult = age >= 18 ? "TAK" : "NIE";
+console.log("Czy pełnoletni:", isAdult);
+
+
+// ---------- WAŻNE ----------
+// używaj === zamiast ==
+// if = podejmowanie decyzji
+
+--- FILE: ./src/lessons/03-arrays-and-loops/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 3
+// ==========================================
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Stwórz tablicę 5 liczb
+
+let numbers = [1, 2, 3, 4, 5];
+
+// TODO:
+// wypisz wszystkie liczby w pętli
+
+for (let i = 0; i< numbers.length; i++){
+    console.log(numbers [i]);
+}
+
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Oblicz sumę tablicy
+
+let numbers2 = [10, 20, 30, 40];
+
+// TODO:
+// policz sumę i wypisz
+
+let sum = 0;
+
+
+for (let i = 0; i< number2.length; i++){
+    sum+=i;
+}
+
+
+
+// ---------- ĆWICZENIE 3 ----------
+// Znajdź największą liczbę
+
+let numbers3 = [5, 12, 3, 99, 1];
+
+
+let highest = numbers3[0];
+
+for (let i = 0; i< number3.length; i++){
+    if (numbers3[i]<highest)
+    {highest=numbers3[i]
+
+    }}
+// TODO:
+// znajdź największą
+
+
+
+// ---------- ĆWICZENIE 4 ----------
+// Parzyste liczby
+
+let numbers4 = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i<numbers4.length; i++){
+    if(numbers4[i]%2==0){
+        console.log(numbers4[i]);
+    }
+}
+
+// TODO:
+// wypisz tylko parzyste
+
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Tablica stringów
+
+let names = ["Jan", "Anna", "Piotr", "Adam", "Kuba"];
+
+for (let i = 0; i<names.length; i++){
+    if(names[i].startsWith("A")){
+        console.log(names[i]);
+    }
+}
+
+
+/// ---------- ĆWICZENIE 6 ----------
+// Dodawanie elementów
+
+let cars = ["BMW", "Audi"];
+
+cars.push("Bmw2");
+cars.push("Suzuki");
+
+for (let  i = 0; cars.length; i ++){
+    console.log(cars[i]);
+}
+
+
+// ---------- ĆWICZENIE 7 ----------
+// Odwróć tablicę (na chłopski rozum)
+
+let numbers5 = [1, 2, 3, 4];
+
+for (let i = numbers5.length; i>=0; i--){
+    console.log(numbers5[i]);
+}
+
+// TODO:
+// wypisz od końca do początku (pętla)
+
+
+
+// ---------- BONUS ----------
+// Policz średnią z tablicy
+
+let numbers6 = [10, 20, 30];
+
+// TODO:
+
+let sum2 = 0;
+
+
+for (let i = 0; i< numbers6.length; i++){
+    sum+=i;
+}
+
+let medium = sum2/numbers6.length;
+
+// średnia = suma / ilość}
+
+--- FILE: ./src/lessons/03-arrays-and-loops/theory.js ---
+// ==========================================
+// LEKCJA 3 — TABLICE I PĘTLE
+// ==========================================
+
+// ---------- TABLICE ----------
+
+let numbers = [1, 2, 3, 4, 5];
+
+console.log(numbers);
+console.log(numbers[0]); // pierwszy element
+console.log(numbers.length); // długość
+
+
+// ---------- DODAWANIE ----------
+
+numbers.push(6); // na koniec
+console.log(numbers);
+
+
+// ---------- USUWANIE ----------
+
+numbers.pop(); // usuwa ostatni
+console.log(numbers);
+
+
+// ---------- PĘTLA FOR ----------
+
+for (let i = 0; i < numbers.length; i++) {
+    console.log("element:", numbers[i]);
+}
+
+
+// ---------- SUMA ----------
+
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+    sum = sum + numbers[i];
+}
+
+console.log("suma:", sum);
+
+
+// ---------- WAŻNE ----------
+// tablica = lista danych
+// pętla = przechodzenie po niej
+
+--- FILE: ./src/lessons/04-objects/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 4
+// ==========================================
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Stwórz obiekt reprezentujący Ciebie
+
+// pola:
+// firstName
+// lastName
+// age
+// city
+// profession
+
+// TODO:
+// wypisz cały obiekt
+// wypisz samo firstName
+// wypisz samo city
+
+const user = {
+    firstName:"Przemek",
+    lastName: "Wlodarczyk",
+    age: 36,
+    city: 'Otwock',
+    profession: 'Developer',
+}
+
+console.log(user);
+
+console.log(use.firstName);
+console.log(user.city);
+
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Zmień wartość age
+
+user.age = 37;
+
+console.log(user.age);
+// TODO:
+// zwiększ wiek o 1
+// wypisz nową wartość
+
+
+
+// ---------- ĆWICZENIE 
+// 3 ----------
+// Dodaj nowe pole
+
+user.isLearningReact = true;
+
+console.log(user);
+
+
+
+// TODO:
+// dodaj pole:
+// isLearningReact = true
+
+// wypisz cały obiekt
+
+
+
+// ---------- ĆWICZENIE 4 ----------
+// Tablica obiektów — samochody
+
+const cars = [
+    {
+        id: 1,
+        brand: "Toyota",
+        model: "Corolla",
+        year: 2020,
+        price: 45000
+    },
+    {
+        id: 2,
+        brand: "BMW",
+        model: "320i",
+        year: 2022,
+        price: 85000
+    },
+    {
+        id: 3,
+        brand: "Audi",
+        model: "A4",
+        year: 2018,
+        price: 55000
+    }
+];
+
+
+for (let i = 0; let<cars.length; i++){
+    console.log(cars[i].brand);
+}
+// TODO:
+// wypisz wszystkie marki aut
+
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Wypisz tylko drogie auta
+
+for (let i = 0; let<cars.length; i++){
+    if(cars[i].price>5000){
+    console.log(cars[i])};
+}
+
+
+
+// TODO:
+// wypisz tylko auta,
+// których cena > 50000
+
+
+
+// ---------- ĆWICZENIE 6 ----------
+// Znajdź najnowsze auto
+
+let newesOne = users[0];
+
+for(let i = 0; i < cars.length; i++){
+    if(cars[i].year > newesOne.year){
+        newesOne = cars[i];
+    }
+}
+
+
+// TODO:
+// znajdź auto z największym year
+
+
+
+// ---------- ĆWICZENIE 7 ----------
+// Tablica pracowników
+
+const employees = [
+    {
+        id: 1,
+        name: "Jan",
+        salary: 5000
+    },
+    {
+        id: 2,
+        name: "Anna",
+        salary: 8000
+    },
+    {
+        id: 3,
+        name: "Piotr",
+        salary: 6500
+    }
+];
+
+// TODO:
+// wypisz tylko pracowników,
+// którzy zarabiają więcej niż 6000
+
+for (let i = 0; let<employees.length; i++){
+    if(employees[i].salary>6000);
+    console.log(employees[i]);
+}
+
+// ---------- BONUS ----------
+// Policz sumę wszystkich salary
+
+
+let salary = 0;
+
+for (let i = 0; let<employees.length; i++){
+  
+    salary+=employees[i].salary;
+}
+
+--- FILE: ./src/lessons/04-objects/theory.js ---
+// ==========================================
+// LEKCJA 4 — OBIEKTY
+// ==========================================
+
+
+// ---------- POJEDYNCZY OBIEKT ----------
+
+const user = {
+    firstName: "Przemek",
+    lastName: "Włodarczyk",
+    age: 36,
+    city: "Łuków",
+    isJavaDeveloper: true
+};
+
+console.log(user);
+
+
+// ---------- DOSTĘP DO WŁAŚCIWOŚCI ----------
+
+console.log(user.firstName);
+console.log(user.age);
+
+
+// ---------- ZMIANA WARTOŚCI ----------
+
+user.age = 37;
+
+console.log(user.age);
+
+
+// ---------- DODANIE NOWEGO POLA ----------
+
+user.country = "Polska";
+
+console.log(user);
+
+
+// ---------- TABLICA OBIEKTÓW ----------
+
+const users = [
+    {
+        id: 1,
+        name: "Jan",
+        age: 25,
+        city: "Warszawa"
+    },
+    {
+        id: 2,
+        name: "Anna",
+        age: 30,
+        city: "Kraków"
+    },
+    {
+        id: 3,
+        name: "Piotr",
+        age: 40,
+        city: "Gdańsk"
+    }
+];
+
+console.log(users);
+
+
+// ---------- PĘTLA PO TABLICY OBIEKTÓW ----------
+
+for (let i = 0; i < users.length; i++) {
+    console.log(users[i].name);
+}
+
+
+// ---------- WARUNEK ----------
+
+for (let i = 0; i < users.length; i++) {
+    if (users[i].age > 28) {
+        console.log(users[i].name);
+    }
+}
+
+
+// ---------- WAŻNE ----------
+
+// object = jeden byt
+// array of objects = lista bytów
+
+// Java:
+// User user = new User()
+
+// JS:
+const person = {
+    name: "Test"
+}
+
+--- FILE: ./src/lessons/05-functions/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 5
+// ==========================================
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Napisz funkcję sayHello()
+// która wypisze:
+// "Hello JavaScript"
+
+function sayHello(){
+    console.log("Hello JavaScript");
+}
+
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Napisz funkcję greetUser(name)
+// która przyjmuje imię
+// i wypisuje:
+// "Witaj, X"
+
+function greetUser(name){
+    console.log(`Witaj, ${name}`);
+}
+
+
+
+
+
+// ---------- ĆWICZENIE 3 ----------
+// Napisz funkcję add(a, b)
+// która zwraca sumę dwóch liczb
+
+function add (a, b){
+    return (a + b);
+}
+
+console.log(add(10, 15));
+
+
+
+// potem:
+// console.log(add(10, 15));
+
+
+
+// ---------- ĆWICZENIE 4 ----------
+// Napisz funkcję isEven(number)
+// która zwraca true jeśli liczba parzysta
+// i false jeśli nie
+
+function isEven(number){
+    if(number%2==0){
+        return true;
+    }else{
+        return false;
+    }
+    
+}
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Napisz funkcję calculateDiscount(price, percent)
+// która zwraca cenę po rabacie
+
+
+function calculateDiscount(price, percent){
+    let scale = 100 - percent/100;
+    return price * scale;
+}
+
+// przykład:
+// calculateDiscount(1000, 10)
+// wynik: 900
+
+
+
+// ---------- ĆWICZENIE 6 ----------
+// Napisz funkcję findGreater(a, b)
+// która zwróci większą liczbę
+
+
+function findGreater(a, b){
+    if(a>b){
+        return a;
+    }else{
+        return b;
+    }
+}
+
+
+// ---------- ĆWICZENIE 7 ----------
+// Napisz arrow function
+// const square = (number) => ...
+// która zwróci kwadrat liczby
+
+
+const sqaure = (number) => 
+{
+    return number * number;
+}
+
+// ---------- BONUS ----------
+// Napisz funkcję,
+// która przyjmuje tablicę liczb
+// i zwraca ich sumę
+
+// przykład:
+// sumArray([1,2,3]) -> 6
+
+
+
+
+
+--- FILE: ./src/lessons/05-functions/theory.js ---
+// ==========================================
+// LEKCJA 5 — FUNKCJE
+// ==========================================
+
+
+// ---------- PODSTAWOWA FUNKCJA ----------
+
+function sayHello() {
+    console.log("Cześć!");
+}
+
+sayHello();
+
+
+// ---------- FUNKCJA Z PARAMETRAMI ----------
+
+function greet(name) {
+    console.log(`Cześć ${name}`);
+}
+
+greet("Przemek");
+greet("Kuba");
+
+
+// ---------- RETURN ----------
+
+function add(a, b) {
+    return a + b;
+}
+
+let result = add(10, 20);
+
+console.log(result);
+
+
+// ---------- FUNKCJA Z WARUNKIEM ----------
+
+function isAdult(age) {
+    if (age >= 18) {
+        return true;
+    }
+
+    return false;
+}
+
+console.log(isAdult(20));
+console.log(isAdult(15));
+
+
+// ---------- ARROW FUNCTION ----------
+
+const multiply = (a, b) => {
+    return a * b;
+};
+
+console.log(multiply(5, 4));
+
+
+// ---------- KRÓTSZY ARROW ----------
+
+const double = number => number * 2;
+
+console.log(double(10));
+
+
+// ---------- WAŻNE ----------
+
+// function = klasyczny zapis
+// => = nowoczesny zapis
+
+// Java:
+// public int add(int a, int b)
+
+// JS:
+// function add(a, b)
+
+--- FILE: ./src/lessons/06-array-methods/exercises.js ---
+// ==========================================
+// ĆWICZENIA — LEKCJA 6
+// ==========================================
+
+const cars = [
+    {
+        id: 1,
+        brand: "Toyota",
+        model: "Corolla",
+        year: 2020,
+        price: 45000
+    },
+    {
+        id: 2,
+        brand: "BMW",
+        model: "320i",
+        year: 2022,
+        price: 85000
+    },
+    {
+        id: 3,
+        brand: "Audi",
+        model: "A4",
+        year: 2018,
+        price: 55000
+    },
+    {
+        id: 4,
+        brand: "Honda",
+        model: "Civic",
+        year: 2021,
+        price: 48000
+    }
+];
+
+
+// ---------- ĆWICZENIE 1 ----------
+// Użyj map()
+// i wyciągnij tylko brand
+
+// wynik:
+// ["Toyota", "BMW", "Audi", "Honda"]
+
+
+const names = cars.map(function(car) {
+    return car.name;
+});
+
+
+
+
+
+// ---------- ĆWICZENIE 2 ----------
+// Użyj map()
+// i stwórz tablicę samych cen
+
+// wynik:
+// [45000, 85000, 55000, 48000]
+
+const prices = cars.map(function(car) {
+    return car.price;
+});
+
+
+
+
+
+// ---------- ĆWICZENIE 3 ----------
+// Użyj filter()
+// i zwróć auta droższe niż 50000
+
+const pricesHigher = cars.filter(function(car) {
+    return car.price > 50000;
+});
+
+
+// ---------- ĆWICZENIE 4 ----------
+// Użyj filter()
+// i zwróć auta nowsze niż 2020
+
+const newest = cars.filter(function(car) {
+    return car.year > 2020;
+});
+
+
+// ---------- ĆWICZENIE 5 ----------
+// Użyj find()
+// znajdź auto marki BMW
+
+const bmw = cars.find(function(car){
+    car.brand === "BMW";
+});
+
+
+
+// ---------- ĆWICZENIE 6 ----------
+// Użyj find()
+// znajdź auto o id = 3
+
+const idThree  = cars.find(function(car){
+    car.id === 3;
+});
+
+// ---------- ĆWICZENIE 7 ----------
+// Użyj filter()
+// znajdź auta:
+// price < 60000
+// i year > 2019
+
+
+const filter = cars.filter(function(car){
+    return car.price<6000 && car.year>2019;
+});
+
+
+
+// ---------- BONUS ----------
+// Użyj map()
+// i stwórz nową tablicę:
+
+// [
+//   "Toyota Corolla",
+//   "BMW 320i",
+//   "Audi A4"
+// ]
+
+--- FILE: ./src/lessons/06-array-methods/theory.js ---
+// ==========================================
+// LEKCJA 6 — MAP / FILTER / FIND
+// ==========================================
+
+
+// ---------- DANE ----------
+
+const users = [
+    {
+        id: 1,
+        name: "Jan",
+        age: 25,
+        city: "Warszawa"
+    },
+    {
+        id: 2,
+        name: "Anna",
+        age: 31,
+        city: "Kraków"
+    },
+    {
+        id: 3,
+        name: "Piotr",
+        age: 19,
+        city: "Gdańsk"
+    }
+];
+
+
+// ==========================================
+// MAP()
+// ==========================================
+
+// map = przekształca każdy element
+// i zwraca NOWĄ tablicę
+
+const names = users.map(function(user) {
+    return user.name;
+});
+
+console.log(names);
+// ["Jan", "Anna", "Piotr"]
+
+
+// ==========================================
+// FILTER()
+// ==========================================
+
+// filter = zwraca tylko elementy
+// spełniające warunek
+
+const adults = users.filter(function(user) {
+    return user.age >= 18;
+});
+
+console.log(adults);
+
+
+// ==========================================
+// FIND()
+// ==========================================
+
+// find = zwraca PIERWSZY pasujący element
+
+const anna = users.find(function(user) {
+    return user.name === "Anna";
+});
+
+console.log(anna);
+
+
+// ==========================================
+// ARROW VERSION
+// ==========================================
+
+const names2 = users.map(user => user.name);
+
+console.log(names2);
+
+
+// ==========================================
+// WAŻNE
+// ==========================================
+
+// map -> zmieniam dane
+// filter -> wybieram dane
+// find -> szukam jednego
+
+--- FILE: ./src/lessons/07-review-packages/exercises.js ---
+
+
+--- FILE: ./src/main.jsx ---
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+--- FILE: ./vite.config.js ---
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+
+
